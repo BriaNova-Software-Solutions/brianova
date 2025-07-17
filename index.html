@@ -1,6 +1,94 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es" data-dm-proxy-injected="true"><head><style class="dmm2 dm-fb" media="screen"></style><style class="dmm2 dm-tx" media="screen"></style><style class="dmm2 dm-iv" media="screen">.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, img.Wirisformula, a[data-testid="headerMediumLogo"]>svg, .d2l-navigation-link-image-container, .d2l-iframe-loading-container {
+    filter: invert(100%) hue-rotate(180deg) !important;
+}</style><style class="dmm2 dm-il" media="screen">[data-dm-inline-bgcolor] {
+  background-color: var(--dm-inline-bgcolor) !important;
+}
+[data-dm-inline-bgimage] {
+  background-image: var(--dm-inline-bgimage) !important;
+}
+[data-dm-inline-border] {
+  border-color: var(--dm-inline-border) !important;
+}
+[data-dm-inline-border-bottom] {
+  border-bottom-color: var(--dm-inline-border-bottom) !important;
+}
+[data-dm-inline-border-left] {
+  border-left-color: var(--dm-inline-border-left) !important;
+}
+[data-dm-inline-border-right] {
+  border-right-color: var(--dm-inline-border-right) !important;
+}
+[data-dm-inline-border-top] {
+  border-top-color: var(--dm-inline-border-top) !important;
+}
+[data-dm-inline-boxshadow] {
+  box-shadow: var(--dm-inline-boxshadow) !important;
+}
+[data-dm-inline-color] {
+  color: var(--dm-inline-color) !important;
+}
+[data-dm-inline-fill] {
+  fill: var(--dm-inline-fill) !important;
+}
+[data-dm-inline-stroke] {
+  stroke: var(--dm-inline-stroke) !important;
+}
+[data-dm-inline-outline] {
+  outline-color: var(--dm-inline-outline) !important;
+}
+[data-dm-inline-stopcolor] {
+  stop-color: var(--dm-inline-stopcolor) !important;
+}</style><style class="dmm2 dm-vb" media="screen">:root {
+   --dm-neutral-background: #080a0b;
+   --dm-neutral-text: #e1dcd7;
+   --dm-selection-background: #0048ae;
+   --dm-selection-text: #f2f0ed;
+}</style><style class="dmm2 dm-rv" media="screen"></style><style class="dmm2 dm-ua" media="screen">html {
+    color-scheme: dark !important;
+}
+html, body {
+    border-color: #72695b;
+    color: #f2f0ed;
+}
+a {
+    color: #2b93ff;
+}
+table {
+    border-color: #50575b;
+}
+::placeholder {
+    color: #b7afa4;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: #3a3e00 !important;
+    color: #f2f0ed !important;
+}
+::-webkit-scrollbar {
+    background-color: #161a1b;
+    color: #afa89c;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #3f4548;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #535b5f;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #42494c;
+}
+::-webkit-scrollbar-corner {
+    background-color: #0e1011;
+}
+::selection {
+    background-color: #0048ae !important;
+    color: #f2f0ed !important;
+}
+::-moz-selection {
+    background-color: #0048ae !important;
+    color: #f2f0ed !important;
+}</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BriaNova Software Solutions - Transformamos Ideas en Soluciones Digitales</title>
@@ -416,10 +504,11 @@
         }
 
         .message {
-            max-width: 80%;
-            padding: 0.8rem;
+            max-width: 85%;
+            padding: 1rem;
             border-radius: 15px;
             word-wrap: break-word;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .message.bot {
@@ -432,6 +521,44 @@
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
             align-self: flex-end;
+        }
+
+        .menu-options {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .menu-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .menu-option .number {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .option-text {
+            flex: 1;
         }
 
         .chatbot-input {
@@ -513,6 +640,42 @@
             color: #00f5ff;
         }
 
+        .admin-link {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .admin-link:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-link svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .admin-link:hover svg {
+            opacity: 1;
+            fill: #00f5ff;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -558,11 +721,177 @@
             opacity: 1;
             transform: translateY(0);
         }
-    </style>
-</head>
+    </style><style class="dmm2 dm-sn" media="screen"></style>
+<meta name="dm" content="678cbb1440274d13bb2469cc0e1cb3d1"><style class="dmm2 dm-or" media="screen">.vimvixen-hint {
+    background-color: #7b4f00 !important;
+    border-color: #e1b508 !important;
+    color: #fff2cf !important;
+}
+#vimvixen-console-frame {
+    color-scheme: light !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}
+#edge-translate-panel-body,
+.MuiTypography-body1,
+.nfe-quote-text {
+    color: var(--dm-neutral-text) !important;
+}
+gr-main-header {
+    background-color: #043343 !important;
+}
+.tou-z65h9k,
+.tou-mignzq,
+.tou-1b6i2ox,
+.tou-lnqlqk {
+    background-color: var(--dm-neutral-background) !important;
+}
+.tou-75mvi {
+    background-color: #001720 !important;
+}
+.tou-ta9e87,
+.tou-1w3fhi0,
+.tou-1b8t2us,
+.tou-py7lfi,
+.tou-1lpmd9d,
+.tou-1frrtv8,
+.tou-17ezmgn {
+    background-color: #000000 !important;
+}
+.tou-uknfeu {
+    background-color: #190b00 !important;
+}
+.tou-6i3zyv {
+    background-color: #0f536a !important;
+}
+div.mermaid-viewer-control-panel .btn {
+    background-color: var(--dm-neutral-background);
+    fill: var(--dm-neutral-text);
+}
+svg g rect.er {
+    fill: var(--dm-neutral-background) !important;
+}
+svg g rect.er.entityBox {
+    fill: var(--dm-neutral-background) !important;
+}
+svg g rect.er.attributeBoxOdd {
+    fill: var(--dm-neutral-background) !important;
+}
+svg g rect.er.attributeBoxEven {
+    fill: var(--dm-selection-background);
+    fill-opacity: 0.8 !important;
+}
+svg rect.er.relationshipLabelBox {
+    fill: var(--dm-neutral-background) !important;
+}
+svg g g.nodes rect,
+svg g g.nodes polygon {
+    fill: var(--dm-neutral-background) !important;
+}
+svg g rect.task {
+    fill: var(--dm-selection-background) !important;
+}
+svg line.messageLine0,
+svg line.messageLine1 {
+    stroke: var(--dm-neutral-text) !important;
+}
+div.mermaid .actor {
+    fill: var(--dm-neutral-background) !important;
+}
+mitid-authenticators-code-app > .code-app-container {
+    background-color: white !important;
+    padding-top: 1rem;
+}
+iframe#unpaywall[src$="unpaywall.html"] {
+    color-scheme: light !important;
+}
+select option {
+    background-color: var(--dm-neutral-background) !important;
+}
+body#tumblr {
+    --dm-bg--secondary-accent: 31, 32, 34 !important;
+    --dm-bg--white: 23, 23, 23 !important;
+    --dm-text--black: 228, 224, 218 !important;
+}
+:host {
+    --d2l-border-color: var(--dm-bg--d2l-color-gypsum) !important;
+    --d2l-button-icon-background-color-hover: var(--dm-bg--d2l-color-gypsum) !important;
+    --d2l-color-ferrite: var(--dm-neutral-text) !important;
+    --d2l-color-sylvite: var(--dm-bg--d2l-color-sylvite) !important;
+    --d2l-dropdown-background-color: var(--dm-neutral-background) !important;
+    --d2l-dropdown-border-color: var(--dm-border--d2l-color-mica) !important;
+    --d2l-input-backgroud-color: var(--dm-neutral-background) !important;
+    --d2l-menu-border-color: var(--dm-bg--d2l-color-gypsum) !important;
+    --d2l-tooltip-background-color: var(--dm-neutral-background) !important;
+    --d2l-tooltip-border-color: var(--dm-bg--d2l-color-gypsum) !important;
+}
+:host([_floating]) .d2l-floating-buttons-container {
+    background-color: var(--dm-neutral-background) !important;
+    border-top-color: var(--dm-border--d2l-color-mica) !important;
+    opacity: 0.88 !important;
+}
+d2l-card {
+    background: var(--dm-neutral-background) !important;
+    border-color: var(--dm-border--d2l-color-gypsum) !important;
+}
+d2l-dropdown-content > div,
+d2l-menu-item {
+    background-color: var(--dm-neutral-background) !important;
+    border-radius: 10px !important;
+}
+d2l-empty-state-simple {
+    border-color: var(--dm-bg--d2l-color-gypsum) !important;
+}
+.d2l-button-filter > ul > li > a.vui-button {
+    border-color: var(--dm-border--d2l-color-mica) !important;
+}
+.d2l-label-text:has(.d2l-button-subtle-content):hover,
+.d2l-label-text:has(.d2l-button-subtle-content):focus,
+.d2l-label-text:has(.d2l-button-subtle-content):active {
+    background-color: var(--dm-bg--d2l-color-gypsum) !important;
+}
+.d2l-navigation-centerer {
+    color: inherit !important;
+}
+.d2l-tabs-layout {
+    border-color: var(--dm-border--d2l-color-gypsum) !important;
+}
+.d2l-input,
+.d2l-calendar-date,
+.d2l-htmleditor-container {
+    background-color: var(--dm-neutral-background) !important;
+}
+.d2l-collapsible-panel {
+    border: 1px solid var(--dm-border--d2l-color-mica) !important;
+    border-radius: 0.4rem !important;
+}
+.d2l-collapsible-panel-divider {
+    border-bottom: 1px solid var(--dm-border--d2l-color-mica) !important;
+}
+.d2l-w2d-flex {
+    border-bottom: 2px solid var(--dm-border--d2l-color-mica) !important;
+}
+.d2l-collapsible-panel scrolled,
+.d2l-collapsible-panel-header,
+.d2l-w2d-collection-fixed {
+    background-color: var(--dm-neutral-background) !important;
+}
+.d2l-loading-spinner-bg {
+    fill: var(--dm-bg--d2l-color-gypsum) !important;
+}
+.d2l-loading-spinner-bg-stroke {
+    stroke: var(--dm-border--d2l-color-mica) !important;
+}
+.d2l-loading-spinner-wrapper svg path,
+.d2l-loading-spinner-wrapper svg circle {
+    fill: var(--dm-neutral-background) !important;
+}
+embed[type="application/pdf"][src="about:blank"] { filter: invert(100%) contrast(90%); }
+embed[type="application/pdf"][src="about:blank"] { filter: invert(100%) contrast(90%); }</style></head>
 <body>
     <!-- Partículas -->
-    <div class="particles" id="particles"></div>
+    <div class="particles" id="particles"><div class="particle" style="left: 1.15795%; top: 49.0888%; animation-delay: 5.35852s; animation-duration: 3.87905s;"></div><div class="particle" style="left: 63.8653%; top: 1.2807%; animation-delay: 4.15538s; animation-duration: 5.43725s;"></div><div class="particle" style="left: 39.9783%; top: 4.97257%; animation-delay: 0.278511s; animation-duration: 3.90109s;"></div><div class="particle" style="left: 94.7252%; top: 37.4403%; animation-delay: 5.93652s; animation-duration: 4.16662s;"></div><div class="particle" style="left: 35.614%; top: 94.6271%; animation-delay: 4.63745s; animation-duration: 5.38512s;"></div><div class="particle" style="left: 95.4616%; top: 17.0585%; animation-delay: 1.49974s; animation-duration: 3.45596s;"></div><div class="particle" style="left: 50.4565%; top: 97.2486%; animation-delay: 0.627908s; animation-duration: 3.99821s;"></div><div class="particle" style="left: 23.1746%; top: 90.0903%; animation-delay: 1.36417s; animation-duration: 5.73531s;"></div><div class="particle" style="left: 95.0573%; top: 92.9312%; animation-delay: 2.51446s; animation-duration: 5.69335s;"></div><div class="particle" style="left: 16.2648%; top: 34.1832%; animation-delay: 1.57931s; animation-duration: 4.3834s;"></div><div class="particle" style="left: 71.5121%; top: 78.7009%; animation-delay: 5.93125s; animation-duration: 5.46077s;"></div><div class="particle" style="left: 83.6491%; top: 24.0063%; animation-delay: 0.412583s; animation-duration: 4.8058s;"></div><div class="particle" style="left: 44.5401%; top: 91.7922%; animation-delay: 5.88238s; animation-duration: 3.11606s;"></div><div class="particle" style="left: 13.2477%; top: 65.8206%; animation-delay: 3.62816s; animation-duration: 5.78675s;"></div><div class="particle" style="left: 6.66694%; top: 2.96444%; animation-delay: 2.26193s; animation-duration: 3.53361s;"></div><div class="particle" style="left: 97.0693%; top: 97.7329%; animation-delay: 1.64193s; animation-duration: 3.50892s;"></div><div class="particle" style="left: 2.42704%; top: 43.4163%; animation-delay: 3.51025s; animation-duration: 4.42159s;"></div><div class="particle" style="left: 47.766%; top: 57.1561%; animation-delay: 1.98015s; animation-duration: 4.93591s;"></div><div class="particle" style="left: 83.2772%; top: 53.5238%; animation-delay: 5.70346s; animation-duration: 4.16849s;"></div><div class="particle" style="left: 67.3095%; top: 8.02316%; animation-delay: 1.23523s; animation-duration: 3.45015s;"></div><div class="particle" style="left: 65.8765%; top: 15.5241%; animation-delay: 4.1679s; animation-duration: 5.70974s;"></div><div class="particle" style="left: 7.01353%; top: 44.4349%; animation-delay: 1.48097s; animation-duration: 3.15132s;"></div><div class="particle" style="left: 71.169%; top: 64.8925%; animation-delay: 0.405725s; animation-duration: 5.2616s;"></div><div class="particle" style="left: 60.1727%; top: 59.745%; animation-delay: 0.274096s; animation-duration: 4.6196s;"></div><div class="particle" style="left: 0.704485%; top: 79.4859%; animation-delay: 1.39451s; animation-duration: 4.77429s;"></div><div class="particle" style="left: 75.1027%; top: 85.8129%; animation-delay: 5.49154s; animation-duration: 4.30654s;"></div><div class="particle" style="left: 35.1203%; top: 81.938%; animation-delay: 1.60405s; animation-duration: 3.92467s;"></div><div class="particle" style="left: 99.9967%; top: 19.3091%; animation-delay: 0.7547s; animation-duration: 5.53435s;"></div><div class="particle" style="left: 56.1033%; top: 63.3917%; animation-delay: 5.98854s; animation-duration: 5.12203s;"></div><div class="particle" style="left: 25.4644%; top: 66.0876%; animation-delay: 0.26372s; animation-duration: 5.841s;"></div><div class="particle" style="left: 27.3462%; top: 99.3658%; animation-delay: 0.313072s; animation-duration: 3.32012s;"></div><div class="particle" style="left: 6.02747%; top: 62.2416%; animation-delay: 0.250547s; animation-duration: 5.71581s;"></div><div class="particle" style="left: 42.8055%; top: 53.7517%; animation-delay: 4.43519s; animation-duration: 3.75512s;"></div><div class="particle" style="left: 82.2418%; top: 14.673%; animation-delay: 4.01124s; animation-duration: 5.69941s;"></div><div class="particle" style="left: 0.125006%; top: 48.13%; animation-delay: 2.47064s; animation-duration: 4.36826s;"></div><div class="particle" style="left: 10.1954%; top: 11.478%; animation-delay: 1.66408s; animation-duration: 5.83854s;"></div><div class="particle" style="left: 28.3545%; top: 67.1738%; animation-delay: 2.62686s; animation-duration: 4.32822s;"></div><div class="particle" style="left: 8.71467%; top: 3.34462%; animation-delay: 1.20081s; animation-duration: 4.03429s;"></div><div class="particle" style="left: 9.23325%; top: 28.9715%; animation-delay: 3.81662s; animation-duration: 3.47157s;"></div><div class="particle" style="left: 80.6709%; top: 75.6056%; animation-delay: 5.19807s; animation-duration: 3.99515s;"></div><div class="particle" style="left: 52.1927%; top: 31.7376%; animation-delay: 1.07077s; animation-duration: 4.41574s;"></div><div class="particle" style="left: 67.7569%; top: 36.5966%; animation-delay: 2.79297s; animation-duration: 3.12065s;"></div><div class="particle" style="left: 37.6104%; top: 62.3069%; animation-delay: 1.0464s; animation-duration: 4.58388s;"></div><div class="particle" style="left: 16.3033%; top: 53.8229%; animation-delay: 2.41439s; animation-duration: 4.68242s;"></div><div class="particle" style="left: 24.6868%; top: 69.1242%; animation-delay: 0.821427s; animation-duration: 5.16274s;"></div><div class="particle" style="left: 23.6695%; top: 19.1256%; animation-delay: 0.0744739s; animation-duration: 3.76796s;"></div><div class="particle" style="left: 58.9092%; top: 6.18517%; animation-delay: 4.023s; animation-duration: 5.85014s;"></div><div class="particle" style="left: 97.8386%; top: 62.686%; animation-delay: 2.31769s; animation-duration: 4.95126s;"></div><div class="particle" style="left: 49.7323%; top: 29.0546%; animation-delay: 4.77451s; animation-duration: 3.17106s;"></div><div class="particle" style="left: 12.0632%; top: 44.0587%; animation-delay: 1.87755s; animation-duration: 4.00609s;"></div></div>
 
     <!-- Navegación -->
     <nav>
@@ -661,11 +990,11 @@
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" required="">
                     </div>
                     <div class="form-group">
                         <label for="email">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required="">
                     </div>
                     <div class="form-group">
                         <label for="phone">Teléfono</label>
@@ -673,7 +1002,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Mensaje</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <textarea id="message" name="message" rows="5" required=""></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
                 </form>
@@ -690,14 +1019,21 @@
                 <a href="#stats">Nosotros</a>
                 <a href="#contact">Contacto</a>
             </div>
-            <p>&copy; 2025 BriaNova Software Solutions. Todos los derechos reservados.</p>
+            <p>© 2025 BriaNova Software Solutions. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <!-- Admin Access Button -->
+    <a href="admin/login.html" class="admin-link" title="Acceso Administradores">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm7.76-9.64l-1.68 1.69c.84 1.18.84 2.71 0 3.89l1.68 1.69c2.02-2.02 2.02-5.07 0-7.27zM20.07 2l-1.63 1.63c2.77 3.02 2.77 7.56 0 10.74L20.07 16c3.9-3.89 3.91-9.95 0-14z"/>
+        </svg>
+    </a>
 
     <!-- WhatsApp Button -->
     <div class="whatsapp-btn" onclick="openWhatsApp()" title="Contáctanos por WhatsApp">
         <svg viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.108"/>
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.108"></path>
         </svg>
     </div>
 
@@ -724,244 +1060,474 @@
     </div>
 
     <script>
-        // Crear partículas animadas
-        function createParticles() {
-            const particles = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particles.appendChild(particle);
+        // Variables globales del chatbot
+        let clientData = {
+            document: '',
+            name: '',
+            email: '',
+            conversation: []
+        };
+        let currentStep = 'initial';
+        let selectedOption = null;
+
+        // Función para crear un elemento de menú interactivo
+        function createMenuOption(number, text, onClick) {
+            const option = document.createElement('div');
+            option.className = 'menu-option';
+            option.innerHTML = `
+                <span class="number">${number}</span>
+                <span class="option-text">${text}</span>
+            `;
+            option.onclick = () => {
+                showUserMessage(number);
+                onClick();
+            };
+            return option;
+        }
+
+        // Función para mostrar el menú principal
+        function showMainMenu() {
+            const message = document.createElement('div');
+            message.className = 'message bot';
+            message.innerHTML = `Hola ${clientData.name}, ¿en qué puedo ayudarte hoy?`;
+            
+            const menuOptions = document.createElement('div');
+            menuOptions.className = 'menu-options';
+            
+            const options = [
+                { number: '1', text: 'Servicios de desarrollo de software', action: () => handleMenuOption('1') },
+                { number: '2', text: 'Consultoría tecnológica', action: () => handleMenuOption('2') },
+                { number: '3', text: 'Solicitar una cotización', action: () => handleMenuOption('3') },
+                { number: '4', text: 'Hablar con un asesor', action: () => handleMenuOption('4') },
+                { number: '5', text: 'Finalizar conversación', action: () => handleMenuOption('5') }
+            ];
+            
+            options.forEach(opt => {
+                menuOptions.appendChild(createMenuOption(opt.number, opt.text, opt.action));
+            });
+            
+            message.appendChild(menuOptions);
+            document.getElementById('chatMessages').appendChild(message);
+            document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            
+            clientData.conversation.push({type: 'bot', text: 'Menú Principal'});
+        }
+
+        // Función para mostrar el submenú de servicios
+        function showServicesSubmenu() {
+            const message = document.createElement('div');
+            message.className = 'message bot';
+            message.innerHTML = 'Estos son nuestros servicios de desarrollo:';
+            
+            const menuOptions = document.createElement('div');
+            menuOptions.className = 'menu-options';
+            
+            const options = [
+                { number: '1', text: 'Desarrollo web personalizado', action: () => handleSubmenuOption('1') },
+                { number: '2', text: 'Aplicaciones móviles', action: () => handleSubmenuOption('2') },
+                { number: '3', text: 'Sistemas empresariales', action: () => handleSubmenuOption('3') },
+                { number: '4', text: 'Integraciones y APIs', action: () => handleSubmenuOption('4') },
+                { number: '5', text: 'Volver al menú principal', action: () => handleSubmenuOption('5') }
+            ];
+            
+            options.forEach(opt => {
+                menuOptions.appendChild(createMenuOption(opt.number, opt.text, opt.action));
+            });
+            
+            message.appendChild(menuOptions);
+            document.getElementById('chatMessages').appendChild(message);
+            document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            
+            clientData.conversation.push({type: 'bot', text: 'Submenú de Servicios'});
+        }
+
+        // Función para mostrar el submenú de consultoría
+        function showConsultingSubmenu() {
+            const message = document.createElement('div');
+            message.className = 'message bot';
+            message.innerHTML = 'Nuestros servicios de consultoría incluyen:';
+            
+            const menuOptions = document.createElement('div');
+            menuOptions.className = 'menu-options';
+            
+            const options = [
+                { number: '1', text: 'Transformación digital', action: () => handleSubmenuOption('1') },
+                { number: '2', text: 'Optimización de procesos', action: () => handleSubmenuOption('2') },
+                { number: '3', text: 'Arquitectura de software', action: () => handleSubmenuOption('3') },
+                { number: '4', text: 'Seguridad informática', action: () => handleSubmenuOption('4') },
+                { number: '5', text: 'Volver al menú principal', action: () => handleSubmenuOption('5') }
+            ];
+            
+            options.forEach(opt => {
+                menuOptions.appendChild(createMenuOption(opt.number, opt.text, opt.action));
+            });
+            
+            message.appendChild(menuOptions);
+            document.getElementById('chatMessages').appendChild(message);
+            document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            
+            clientData.conversation.push({type: 'bot', text: 'Submenú de Consultoría'});
+        }
+
+        // Función para manejar las opciones del menú principal
+        function handleMenuOption(option) {
+            switch(option) {
+                case '1':
+                    showServicesSubmenu();
+                    currentStep = 'submenu';
+                    selectedOption = 'services';
+                    break;
+                case '2':
+                    showConsultingSubmenu();
+                    currentStep = 'submenu';
+                    selectedOption = 'consulting';
+                    break;
+                case '3':
+                    showBotMessage(`💼 Para brindarte una cotización precisa de tu proyecto, necesitamos algunos detalles:
+
+1. ¿Qué tipo de solución necesitas?
+2. ¿Cuál es el plazo estimado para el proyecto?
+3. ¿Tienes algún presupuesto específico en mente?
+
+¿Te gustaría que enviamos esta conversación a uno de nuestros asesores por WhatsApp? (Responde SI o NO)`);
+                    currentStep = 'final';
+                    break;
+                case '4':
+                    sendConversationToWhatsApp();
+                    showBotMessage('🤝 Te conectaré con un asesor especializado a través de WhatsApp inmediatamente. ¡Gracias por tu interés en nuestros servicios!');
+                    currentStep = 'menu';
+                    setTimeout(showMainMenu, 3000);
+                    break;
+                case '5':
+                    showBotMessage('📱 ¿Te gustaría que te enviemos esta conversación por WhatsApp para seguimiento? (Responde SI o NO)');
+                    currentStep = 'final';
+                    break;
+                default:
+                    showBotMessage('❌ Por favor, selecciona una opción válida (1-5)');
             }
         }
 
+        // Función para manejar las opciones de los submenús
+        function handleSubmenuOption(option) {
+            if(option === '5') {
+                currentStep = 'menu';
+                showMainMenu();
+                return;
+            }
+
+            let message = '';
+            if(selectedOption === 'services') {
+                switch(option) {
+                    case '1':
+                        message = `🌐 Desarrollo Web Personalizado:
+• Sitios web corporativos
+• Aplicaciones web progresivas (PWA)
+• E-commerce y tiendas en línea
+• Portales web interactivos
+• Optimización SEO y rendimiento`;
+                        break;
+                    case '2':
+                        message = `📱 Aplicaciones Móviles:
+• Apps nativas para iOS y Android
+• Aplicaciones multiplataforma
+• Integración con servicios en la nube
+• Notificaciones push
+• Analytics y métricas de uso`;
+                        break;
+                    case '3':
+                        message = `💼 Sistemas Empresariales:
+• ERP personalizados
+• CRM a medida
+• Sistemas de gestión de inventarios
+• Facturación electrónica
+• Automatización de procesos`;
+                        break;
+                    case '4':
+                        message = `🔌 Integraciones y APIs:
+• APIs RESTful
+• Integraciones con servicios externos
+• Middleware personalizado
+• Microservicios
+• Webhooks y eventos`;
+                        break;
+                    default:
+                        message = '❌ Por favor, selecciona una opción válida (1-5)';
+                        showBotMessage(message);
+                        return;
+                }
+            } else if(selectedOption === 'consulting') {
+                switch(option) {
+                    case '1':
+                        message = `🚀 Transformación Digital:
+• Evaluación de madurez digital
+• Estrategia de transformación
+• Implementación de nuevas tecnologías
+• Capacitación del personal
+• Medición de resultados`;
+                        break;
+                    case '2':
+                        message = `⚡ Optimización de Procesos:
+• Análisis de procesos actuales
+• Reingeniería de procesos
+• Automatización de tareas
+• Métricas de eficiencia
+• Mejora continua`;
+                        break;
+                    case '3':
+                        message = `🏗️ Arquitectura de Software:
+• Diseño de arquitectura
+• Patrones de diseño
+• Escalabilidad y rendimiento
+• Seguridad por diseño
+• Documentación técnica`;
+                        break;
+                    case '4':
+                        message = `🛡️ Seguridad Informática:
+• Auditorías de seguridad
+• Pruebas de penetración
+• Implementación de protocolos
+• Respuesta a incidentes
+• Cumplimiento normativo`;
+                        break;
+                    default:
+                        message = '❌ Por favor, selecciona una opción válida (1-5)';
+                        showBotMessage(message);
+                        return;
+                }
+            }
+
+            showBotMessage(message);
+            showBotMessage('💡 ¿Te gustaría obtener más información sobre este servicio o programar una consulta con un especialista? (Responde SI o NO)');
+            currentStep = 'final';
+        }
+
+        // Función para mostrar mensaje del bot
+        function showBotMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            messageDiv.innerHTML = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            clientData.conversation.push({type: 'bot', text: message});
+        }
+
+        // Función para mostrar mensaje del usuario
+        function showUserMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            clientData.conversation.push({type: 'user', text: message});
+        }
+
+        // Función para manejar la entrada del usuario
+        function handleUserInput(input) {
+            showUserMessage(input);
+
+            switch(currentStep) {
+                case 'initial':
+                    if(input.trim().length < 5) {
+                        showBotMessage('❌ Por favor, ingresa un número de documento válido.');
+                        return;
+                    }
+                    clientData.document = input;
+                    currentStep = 'name';
+                    showBotMessage('✅ Gracias. Por favor, ingresa tu nombre completo:');
+                    break;
+                
+                case 'name':
+                    if(input.trim().length < 3) {
+                        showBotMessage('❌ Por favor, ingresa un nombre válido.');
+                        return;
+                    }
+                    clientData.name = input;
+                    currentStep = 'email';
+                    showBotMessage('✅ Perfecto. Ahora, por favor ingresa tu correo electrónico:');
+                    break;
+                
+                case 'email':
+                    if(!input.includes('@') || !input.includes('.')) {
+                        showBotMessage('❌ Por favor, ingresa un correo electrónico válido.');
+                        return;
+                    }
+                    clientData.email = input;
+                    currentStep = 'menu';
+                    showMainMenu();
+                    break;
+                
+                case 'menu':
+                    handleMenuOption(input);
+                    break;
+
+                case 'submenu':
+                    handleSubmenuOption(input);
+                    break;
+
+                case 'final':
+                    if(input.toLowerCase() === 'si' || input.toLowerCase() === 'sí') {
+                        sendConversationToWhatsApp();
+                        showBotMessage('✨ ¡Gracias por tu interés! Te hemos enviado la conversación por WhatsApp. Pronto nos pondremos en contacto contigo.');
+                        currentStep = 'menu';
+                        setTimeout(showMainMenu, 2000);
+                    } else if(input.toLowerCase() === 'no') {
+                        currentStep = 'menu';
+                        showMainMenu();
+                    } else {
+                        showBotMessage('❌ Por favor, responde SI o NO.');
+                    }
+                    break;
+            }
+        }
+
+        // Función para guardar la conversación
+        async function saveConversation() {
+            const conversation = {
+                clientData: clientData,
+                date: new Date().toISOString(),
+                messages: clientData.conversation,
+                status: selectedOption === 'quote' ? 'quote' : 'conversation'
+            };
+
+            try {
+                const response = await fetch('data/chat_records.json');
+                const data = await response.json();
+                data.conversations.push(conversation);
+                
+                await fetch('data/chat_records.json', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+            } catch (error) {
+                console.error('Error al guardar la conversación:', error);
+            }
+        }
+
+        // Función para enviar la conversación por WhatsApp
+        async function sendConversationToWhatsApp() {
+            let conversationText = `*🤖 BriaNova Software Solutions - Registro de Conversación*\n\n`;
+            conversationText += `*📋 Datos del Cliente:*\n`;
+            conversationText += `• Documento: ${clientData.document}\n`;
+            conversationText += `• Nombre: ${clientData.name}\n`;
+            conversationText += `• Email: ${clientData.email}\n\n`;
+            conversationText += `*💬 Historial de Conversación:*\n`;
+            
+            clientData.conversation.forEach((msg, index) => {
+                conversationText += `${msg.type === 'user' ? '👤' : '🤖'} ${msg.text}\n`;
+            });
+            
+            conversationText += `\n*✨ Gracias por tu interés en BriaNova Software Solutions*`;
+            
+            await saveConversation();
+            openWhatsApp(conversationText);
+        }
+
         // Función para abrir WhatsApp
-        function openWhatsApp() {
+        function openWhatsApp(customMessage = '') {
             const phoneNumber = '573227375425';
-            const message = encodeURIComponent('¡Hola! Me interesa conocer más sobre los servicios de BriaNova Software Solutions. Me gustaría conversar sobre un proyecto de desarrollo de software. ¿Podrían brindarme más información sobre sus servicios, metodologías de trabajo y cómo podemos iniciar una colaboración?');
+            const defaultMessage = '¡Hola! Me interesa conocer más sobre los servicios de BriaNova Software Solutions.';
+            const message = encodeURIComponent(customMessage || defaultMessage);
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(whatsappUrl, '_blank');
         }
 
-        // Animación de contador
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const count = +counter.innerText;
-                const increment = target / 100;
-                
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(() => animateCounters(), 20);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Scroll suave
-        function smoothScroll() {
-            const links = document.querySelectorAll('a[href^="#"]');
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
-        }
-
-        // Animaciones en scroll
-        function handleScrollAnimations() {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-
-        // Chatbot
-        function toggleChatbot() {
-            const chatbot = document.getElementById('chatbot');
-            chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            if (message) {
-                addMessage(message, 'user');
-                input.value = '';
-                setTimeout(() => botResponse(message), 500);
-            }
-        }
-
-        function addMessage(message, sender) {
-            const messagesContainer = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-            messageDiv.textContent = message;
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        function botResponse(userMessage) {
-            const responses = {
-                'servicios': 'Ofrecemos desarrollo de software a medida, aplicaciones web y móviles, integraciones con APIs, automatización de procesos, consultoría tecnológica y soporte continuo.',
-                'precios': 'Nuestros precios varían según el proyecto. Te invito a contactarnos para una cotización personalizada. ¿Te gustaría hablar directamente con nuestro equipo?',
-                'tecnologias': 'Trabajamos con tecnologías modernas como React, Node.js, Python, Laravel, Flutter, y muchas más. ¿Hay alguna tecnología específica que te interese?',
-                'tiempo': 'Los tiempos de desarrollo dependen de la complejidad del proyecto. Proyectos simples: 2-4 semanas, proyectos medianos: 1-3 meses, proyectos complejos: 3-6 meses.',
-                'soporte': 'Brindamos soporte 24/7 y mantenimiento continuo para todos nuestros proyectos. Incluye actualizaciones, correcciones y mejoras.',
-                'contacto': 'Puedes contactarnos por WhatsApp, email o través del formulario de contacto. ¿Te gustaría que te conecte con nuestro equipo comercial?'
-            };
-
-            let response = "Gracias por tu mensaje. Me encantaría ayudarte. Algunos temas que puedo resolver:\n\n• Servicios que ofrecemos\n• Precios y cotizaciones\n• Tecnologías que utilizamos\n• Tiempos de desarrollo\n• Soporte y mantenimiento\n• Información de contacto\n\n¿Sobre qué tema te gustaría saber más?";
-
-            const lowerMessage = userMessage.toLowerCase();
-            
-            for (const [key, value] of Object.entries(responses)) {
-                if (lowerMessage.includes(key)) {
-                    response = value;
-                    break;
-                }
-            }
-
-            if (lowerMessage.includes('hola') || lowerMessage.includes('buenos') || lowerMessage.includes('saludos')) {
-                response = "¡Hola! Bienvenido a BriaNova Software Solutions. Soy tu asistente virtual y estoy aquí para ayudarte. ¿En qué puedo asistirte hoy?";
-            }
-
-            if (lowerMessage.includes('whatsapp') || lowerMessage.includes('llamar') || lowerMessage.includes('telefono')) {
-                response = "¡Perfecto! Puedes contactarnos directamente por WhatsApp haciendo clic en el botón verde. También puedes llamarnos o escribirnos para una atención más personalizada.";
-            }
-
-            addMessage(response, 'bot');
-        }
-
+        // Función para manejar el evento keypress en el input
         function handleChatKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessage();
             }
         }
 
-        // Formulario de contacto
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Función para enviar mensaje
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
-            // Simular envío (aquí conectarías con tu backend)
-            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-            
-            // Opcional: Abrir WhatsApp con la información del formulario
-            const whatsappMessage = encodeURIComponent(
-                `¡Hola! Soy ${name}. Me contacto desde el sitio web de BriaNova.\n\n` +
-                `Email: ${email}\n` +
-                `Teléfono: ${phone}\n\n` +
-                `Mensaje: ${message}`
-            );
-            
-            if (confirm('¿Te gustaría continuar la conversación por WhatsApp?')) {
-                window.open(`https://wa.me/573227375425?text=${whatsappMessage}`, '_blank');
+            if (message) {
+                handleUserInput(message);
+                input.value = '';
             }
+        }
+
+        // Función para mostrar/ocultar el chatbot
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'none' ? 'flex' : 'none';
             
-            // Limpiar formulario
-            this.reset();
+            if(chatbot.style.display === 'flex' && currentStep === 'initial') {
+                document.getElementById('chatMessages').innerHTML = '';
+                showBotMessage(`¡Bienvenido a BriaNova Software Solutions! 👋
+
+Para brindarte una mejor atención, por favor proporciona tu número de documento:`);
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            document.getElementById('chatbot').style.display = 'none';
         });
 
-        // Inicializar todo cuando se carga la página
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            smoothScroll();
+        // Animar los contadores de estadísticas
+        document.addEventListener('DOMContentLoaded', () => {
+            const stats = document.querySelectorAll('.stat-number');
             
-            // Observador para animaciones
+            const animateStats = () => {
+                stats.forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-target'));
+                    const count = parseInt(stat.textContent);
+                    const increment = target / 50;
+
+                    if(count < target) {
+                        stat.textContent = Math.ceil(count + increment);
+                        setTimeout(animateStats, 40);
+                    } else {
+                        stat.textContent = target;
+                    }
+                });
+            }
+
+            // Iniciar animación cuando los elementos sean visibles
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        
-                        // Animar contadores cuando la sección de estadísticas sea visible
-                        if (entry.target.closest('.stats')) {
-                            setTimeout(animateCounters, 200);
-                        }
+                    if(entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
                     }
                 });
             });
 
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
+            stats.forEach(stat => observer.observe(stat));
+        });
+
+        // Animar elementos cuando sean visibles
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
             });
         });
 
-        // Efectos adicionales para la experiencia
-        document.addEventListener('mousemove', function(e) {
-            const cursor = document.querySelector('.cursor');
-            if (!cursor) {
-                const newCursor = document.createElement('div');
-                newCursor.className = 'cursor';
-                newCursor.style.cssText = `
-                    position: fixed;
-                    width: 20px;
-                    height: 20px;
-                    background: radial-gradient(circle, #00f5ff, transparent);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 9999;
-                    mix-blend-mode: difference;
-                    transition: transform 0.1s ease;
-                `;
-                document.body.appendChild(newCursor);
-            }
-            
-            const cursorElement = document.querySelector('.cursor');
-            cursorElement.style.left = e.clientX - 10 + 'px';
-            cursorElement.style.top = e.clientY - 10 + 'px';
-        });
-
-        // Navbar transparente en scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(0, 0, 0, 0.9)';
-            } else {
-                nav.style.background = 'rgba(0, 0, 0, 0.3)';
+        // Acceso rápido al panel de administrador (Alt + A)
+        document.addEventListener('keydown', function(e) {
+            if (e.altKey && e.key.toLowerCase() === 'a') {
+                window.location.href = 'admin/login.html';
             }
         });
-
-        // Efecto de typing en el hero
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            
-            type();
-        }
-
-        // Aplicar efecto de typing al subtítulo del hero
-        setTimeout(() => {
-            const subtitle = document.querySelector('.hero p');
-            const originalText = subtitle.textContent;
-            typeWriter(subtitle, originalText, 50);
-        }, 2000);
     </script>
-</body>
-</html>
+
+<div class="cursor" style="position: fixed; width: 20px; height: 20px; background: radial-gradient(circle, rgb(0, 245, 255), transparent); border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; transition: transform 0.1s; left: 902px; top: 146px; --dm-inline-bgimage: radial-gradient(circle, #00cbd4, rgba(0, 0, 0, 0)); --dm-inline-bgcolor: initial;" data-dm-inline-bgimage="" data-dm-inline-bgcolor=""></div></body></html>

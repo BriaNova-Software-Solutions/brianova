@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Administrador - BriaNova</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .login-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00f5ff;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00f5ff;
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 245, 255, 0.3);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #00f5ff;
+        }
+
+        .error-message {
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid rgba(255, 59, 48, 0.3);
+            color: #ff3b30;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="login-logo">BriaNova</div>
+            <div class="login-subtitle">Panel de Administración</div>
+        </div>
+        
+        <div class="error-message" id="errorMessage">
+            Credenciales incorrectas. Por favor, intenta nuevamente.
+        </div>
+
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" required autocomplete="email" placeholder="ejemplo@brianova.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn-primary">Iniciar Sesión</button>
+        </form>
+
+        <a href="../index.html" class="back-link">← Volver al sitio principal</a>
+    </div>
+
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+            // Validaciones básicas
+            if (!email || !password) {
+                errorMessage.textContent = 'Por favor, complete todos los campos.';
+                errorMessage.style.display = 'block';
+                return false;
+            }
+
+            try {
+                const response = await fetch('../data/admin_auth.json', {
+                    method: 'GET',
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (!data || !data.admins || !Array.isArray(data.admins)) {
+                    throw new Error('Formato de datos inválido');
+                }
+
+                const admin = data.admins.find(admin => 
+                    admin.email && admin.password && 
+                    admin.email.toLowerCase() === email.toLowerCase() && 
+                    admin.password === password
+                );
+
+                if (admin) {
+                    // Limpiar cualquier mensaje de error previo
+                    errorMessage.style.display = 'none';
+                    
+                    // Guardar datos de sesión
+                    const sessionData = {
+                        isLoggedIn: true,
+                        adminName: admin.name,
+                        adminEmail: admin.email,
+                        loginTime: new Date().toISOString()
+                    };
+                    
+                    try {
+                        localStorage.setItem('adminSession', JSON.stringify(sessionData));
+                        window.location.href = 'panel.html';
+                    } catch (storageError) {
+                        console.error('Error al guardar la sesión:', storageError);
+                        errorMessage.textContent = 'Error al guardar la sesión. Por favor, intente nuevamente.';
+                        errorMessage.style.display = 'block';
+                    }
+                } else {
+                    errorMessage.textContent = 'Credenciales incorrectas. Por favor, verifique su email y contraseña.';
+                    errorMessage.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error durante el inicio de sesión:', error);
+                errorMessage.textContent = `Error al intentar iniciar sesión: ${error.message}`;
+                errorMessage.style.display = 'block';
+            }
+            return false;
+        }
+
+        // Verificar si ya está logueado
+        document.addEventListener('DOMContentLoaded', () => {
+            const sessionData = localStorage.getItem('adminSession');
+            if (sessionData) {
+                const session = JSON.parse(sessionData);
+                if (session.isLoggedIn) {
+                    window.location.href = 'panel.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
