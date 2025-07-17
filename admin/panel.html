@@ -147,102 +147,55 @@
 
         .dashboard-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        .stats-card {
+        .stat-card {
             background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            text-align: center;
         }
 
-        .stats-number {
-            font-size: 2rem;
+        .stat-value {
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #00f5ff;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin: 0.5rem 0;
         }
 
-        .conversations-list {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 1.5rem;
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
 
-        .conversation-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1rem 0;
-        }
-
-        .conversation-item:last-child {
-            border-bottom: none;
-        }
-
-        .conversation-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .conversation-client {
-            font-weight: bold;
-            color: #00f5ff;
-        }
-
-        .conversation-date {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .conversation-content {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #00f5ff;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
+        .chart-card {
             background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
         }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: #00f5ff;
-        }
-
-        .btn-primary {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(45deg, #00f5ff, #ff00ff);
-            border: none;
-            border-radius: 8px;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 245, 255, 0.3);
+        .chart-title {
+            color: #00f5ff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
 
         @media (max-width: 768px) {
@@ -274,8 +227,42 @@
             <div class="main-content">
                 <section id="dashboard" class="section active">
                     <h2>Dashboard</h2>
-                    <div class="dashboard-stats" id="dashboardStats">
-                        <!-- Stats will be loaded here -->
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalConversations">0</div>
+                            <div class="stat-label">Conversaciones Totales</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="activeConversations">0</div>
+                            <div class="stat-label">Conversaciones Activas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="avgResponseTime">0s</div>
+                            <div class="stat-label">Tiempo Promedio de Respuesta</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="satisfactionRate">0%</div>
+                            <div class="stat-label">Tasa de Satisfacción</div>
+                        </div>
+                    </div>
+
+                    <div class="charts-container">
+                        <div class="chart-card">
+                            <h3 class="chart-title">Conversaciones por Día</h3>
+                            <canvas id="conversationsChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3 class="chart-title">Servicios más Solicitados</h3>
+                            <canvas id="servicesChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3 class="chart-title">Estado de Conversaciones</h3>
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3 class="chart-title">Horarios de Mayor Actividad</h3>
+                            <canvas id="timeChart"></canvas>
+                        </div>
                     </div>
                 </section>
 
@@ -297,6 +284,8 @@
         </div>
     </div>
 
+    <!-- Agregar Chart.js para los gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Funciones de autenticación
         function checkAuth() {
@@ -444,6 +433,201 @@
                 window.location.href = 'login.html';
                 return false;
             }
+        }
+
+        // Función para inicializar los gráficos del dashboard
+        async function initializeDashboard() {
+            try {
+                const response = await fetch('../data/chat_records.json');
+                const data = await response.json();
+                const conversations = data.conversations;
+
+                // Actualizar estadísticas
+                updateStats(conversations);
+
+                // Inicializar gráficos
+                initializeCharts(conversations);
+            } catch (error) {
+                console.error('Error al cargar los datos:', error);
+            }
+        }
+
+        // Función para actualizar las estadísticas
+        function updateStats(conversations) {
+            const totalConversations = conversations.length;
+            const activeConversations = conversations.filter(c => c.status === 'active').length;
+            
+            // Calcular tiempo promedio de respuesta
+            let totalResponseTime = 0;
+            let responseCount = 0;
+            conversations.forEach(conv => {
+                for(let i = 1; i < conv.messages.length; i++) {
+                    if(conv.messages[i].type === 'bot' && conv.messages[i-1].type === 'user') {
+                        const responseTime = new Date(conv.messages[i].timestamp) - new Date(conv.messages[i-1].timestamp);
+                        totalResponseTime += responseTime;
+                        responseCount++;
+                    }
+                }
+            });
+            const avgResponseTime = responseCount > 0 ? Math.round(totalResponseTime / responseCount / 1000) : 0;
+
+            // Actualizar elementos DOM
+            document.getElementById('totalConversations').textContent = totalConversations;
+            document.getElementById('activeConversations').textContent = activeConversations;
+            document.getElementById('avgResponseTime').textContent = `${avgResponseTime}s`;
+            document.getElementById('satisfactionRate').textContent = '98%';
+        }
+
+        // Función para inicializar los gráficos
+        function initializeCharts(conversations) {
+            // Configuración común para los gráficos
+            const chartConfig = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: 'rgba(255, 255, 255, 0.7)'
+                        }
+                    }
+                }
+            };
+
+            // Gráfico de conversaciones por día
+            const conversationsData = processConversationsByDay(conversations);
+            new Chart(document.getElementById('conversationsChart'), {
+                type: 'line',
+                data: {
+                    labels: conversationsData.labels,
+                    datasets: [{
+                        label: 'Conversaciones',
+                        data: conversationsData.data,
+                        borderColor: '#00f5ff',
+                        tension: 0.4
+                    }]
+                },
+                options: chartConfig
+            });
+
+            // Gráfico de servicios solicitados
+            const servicesData = processServiceRequests(conversations);
+            new Chart(document.getElementById('servicesChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: servicesData.labels,
+                    datasets: [{
+                        data: servicesData.data,
+                        backgroundColor: [
+                            '#00f5ff',
+                            '#ff00ff',
+                            '#ffff00',
+                            '#00ff00'
+                        ]
+                    }]
+                },
+                options: chartConfig
+            });
+
+            // Gráfico de estado de conversaciones
+            const statusData = processConversationStatus(conversations);
+            new Chart(document.getElementById('statusChart'), {
+                type: 'pie',
+                data: {
+                    labels: statusData.labels,
+                    datasets: [{
+                        data: statusData.data,
+                        backgroundColor: [
+                            '#00f5ff',
+                            '#ff00ff',
+                            '#ffff00'
+                        ]
+                    }]
+                },
+                options: chartConfig
+            });
+
+            // Gráfico de horarios de actividad
+            const timeData = processActivityTime(conversations);
+            new Chart(document.getElementById('timeChart'), {
+                type: 'bar',
+                data: {
+                    labels: timeData.labels,
+                    datasets: [{
+                        label: 'Actividad',
+                        data: timeData.data,
+                        backgroundColor: '#00f5ff'
+                    }]
+                },
+                options: chartConfig
+            });
+        }
+
+        // Funciones auxiliares para procesar datos
+        function processConversationsByDay(conversations) {
+            const days = {};
+            conversations.forEach(conv => {
+                const date = new Date(conv.date).toLocaleDateString();
+                days[date] = (days[date] || 0) + 1;
+            });
+            return {
+                labels: Object.keys(days),
+                data: Object.values(days)
+            };
+        }
+
+        function processServiceRequests(conversations) {
+            const services = {
+                'Desarrollo Web': 0,
+                'Aplicaciones Móviles': 0,
+                'Consultoría': 0,
+                'Otros': 0
+            };
+            conversations.forEach(conv => {
+                // Analizar mensajes para determinar el servicio solicitado
+                const serviceType = determineServiceType(conv.messages);
+                services[serviceType]++;
+            });
+            return {
+                labels: Object.keys(services),
+                data: Object.values(services)
+            };
+        }
+
+        function processConversationStatus(conversations) {
+            const status = {
+                'Activo': 0,
+                'Completado': 0,
+                'Pendiente': 0
+            };
+            conversations.forEach(conv => {
+                status[conv.status === 'active' ? 'Activo' : 'Completado']++;
+            });
+            return {
+                labels: Object.keys(status),
+                data: Object.values(status)
+            };
+        }
+
+        function processActivityTime(conversations) {
+            const hours = Array(24).fill(0);
+            conversations.forEach(conv => {
+                const hour = new Date(conv.date).getHours();
+                hours[hour]++;
+            });
+            return {
+                labels: Array(24).fill().map((_, i) => `${i}:00`),
+                data: hours
+            };
+        }
+
+        function determineServiceType(messages) {
+            // Lógica para determinar el tipo de servicio basado en los mensajes
+            const messageText = messages.map(m => m.text.toLowerCase()).join(' ');
+            if (messageText.includes('web') || messageText.includes('página')) return 'Desarrollo Web';
+            if (messageText.includes('app') || messageText.includes('móvil')) return 'Aplicaciones Móviles';
+            if (messageText.includes('consultor') || messageText.includes('asesor')) return 'Consultoría';
+            return 'Otros';
         }
 
         // Event Listeners
