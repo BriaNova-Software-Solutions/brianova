@@ -1,3 +1,21 @@
 {
-  "conversations": []
+  "conversations": [
+    {
+      "id": 1689619200000,
+      "date": "2025-07-17T14:00:00.000Z",
+      "clientData": {
+        "name": "Usuario de Ejemplo",
+        "email": "ejemplo@brianova.com",
+        "document": "12345678"
+      },
+      "messages": [
+        {
+          "type": "bot",
+          "text": "¡Hola! Soy el asistente virtual de BriaNova. ¿En qué puedo ayudarte hoy?",
+          "timestamp": "2025-07-17T14:00:00.000Z"
+        }
+      ],
+      "status": "active"
+    }
+  ]
 }

@@ -154,7 +154,7 @@
     </div>
 
     <script>
-        async function handleLogin(event) {
+        function handleLogin(event) {
             event.preventDefault();
             
             const emailInput = document.getElementById('email');
@@ -164,6 +164,13 @@
             const email = emailInput.value.trim();
             const password = passwordInput.value;
 
+            // Credenciales hardcodeadas (las mismas que están en admin_auth.json)
+            const validCredentials = {
+                email: "admin1794@brianova.com",
+                password: "Brianova1794",
+                name: "Administrador Principal"
+            };
+
             // Validaciones básicas
             if (!email || !password) {
                 errorMessage.textContent = 'Por favor, complete todos los campos.';
@@ -171,58 +178,33 @@
                 return false;
             }
 
-            try {
-                const response = await fetch('/data/admin_auth.json', {
-                    method: 'GET',
-                    headers: {
-                        'Cache-Control': 'no-cache',
-                        'Pragma': 'no-cache'
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
+            // Verificar credenciales
+            if (email === validCredentials.email && password === validCredentials.password) {
+                // Limpiar cualquier mensaje de error previo
+                errorMessage.style.display = 'none';
                 
-                if (!data || !data.admins || !Array.isArray(data.admins)) {
-                    throw new Error('Formato de datos inválido');
-                }
-
-                const admin = data.admins.find(admin => 
-                    admin.email && admin.password && 
-                    admin.email.toLowerCase() === email.toLowerCase() && 
-                    admin.password === password
-                );
-
-                if (admin) {
-                    // Limpiar cualquier mensaje de error previo
-                    errorMessage.style.display = 'none';
-                    
-                    // Guardar datos de sesión
-                    const sessionData = {
-                        isLoggedIn: true,
-                        adminName: admin.name,
-                        adminEmail: admin.email,
-                        loginTime: new Date().toISOString()
-                    };
-                    
-                    try {
-                        localStorage.setItem('adminSession', JSON.stringify(sessionData));
+                // Guardar datos de sesión
+                const sessionData = {
+                    isLoggedIn: true,
+                    adminName: validCredentials.name,
+                    adminEmail: validCredentials.email,
+                    loginTime: new Date().toISOString(),
+                    token: btoa(email + ':' + new Date().getTime()) // Token básico para validación
+                };
+                
+                try {
+                    localStorage.setItem('adminSession', JSON.stringify(sessionData));
+                    // Redirigir al panel con un pequeño delay para asegurar que los datos se guarden
+                    setTimeout(() => {
                         window.location.href = 'panel.html';
-                    } catch (storageError) {
-                        console.error('Error al guardar la sesión:', storageError);
-                        errorMessage.textContent = 'Error al guardar la sesión. Por favor, intente nuevamente.';
-                        errorMessage.style.display = 'block';
-                    }
-                } else {
-                    errorMessage.textContent = 'Credenciales incorrectas. Por favor, verifique su email y contraseña.';
+                    }, 100);
+                } catch (storageError) {
+                    console.error('Error al guardar la sesión:', storageError);
+                    errorMessage.textContent = 'Error al guardar la sesión. Por favor, intente nuevamente.';
                     errorMessage.style.display = 'block';
                 }
-            } catch (error) {
-                console.error('Error durante el inicio de sesión:', error);
-                errorMessage.textContent = `Error al intentar iniciar sesión: ${error.message}`;
+            } else {
+                errorMessage.textContent = 'Credenciales incorrectas. Por favor, verifique su email y contraseña.';
                 errorMessage.style.display = 'block';
             }
             return false;
